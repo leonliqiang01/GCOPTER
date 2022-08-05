@@ -229,6 +229,7 @@ public:
         }
     }
 
+    // generate trajectory
     inline void targetCallBack(const geometry_msgs::PoseStamped::ConstPtr &msg)
     {
         if (mapInitialized)
@@ -250,7 +251,7 @@ public:
             {
                 ROS_WARN("Infeasible Position Selected !!!\n");
             }
-
+            // main plan
             plan();
         }
         return;
@@ -314,6 +315,7 @@ int main(int argc, char **argv)
     ros::Rate lr(1000);
     while (ros::ok())
     {
+        //Trajectory Replay
         global_planner.process();
         ros::spinOnce();
         lr.sleep();
